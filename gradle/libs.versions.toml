@@ -1,0 +1,28 @@
+[versions]
+binary-compatibility-validator = "0.12.1"
+extra-java-module-info = "1.2"
+gradle-toolchain-switches = "0.2.0"
+jsr305 = "3.0.2"
+junit = "5.9.2"
+
+
+[libraries]
+# com.google.code.findbugs:jsr305 - JSR305
+jsr305 = { module = "com.google.code.findbugs:jsr305", version.ref = "jsr305" }
+
+# org.junit - JUnit
+junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+
+
+[plugins]
+# org.gradlex.extra-java-module-info - Extra Java Module Info Gradle plugin
+extra-java-module-info = { id = "org.gradlex.extra-java-module-info", version.ref = "extra-java-module-info" }
+
+# io.github.themrmilchmann.gradle.toolchainswitches:gradle-toolchain-switches - Gradle Toolchain Switches Plugin
+gradle-toolchain-switches = { id = "io.github.themrmilchmann.toolchain-switches", version.ref = "gradle-toolchain-switches" }
+
+# org.jetbrains.kotlinx.binary-compatibility-validator - binary-compatibility-validator
+binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
