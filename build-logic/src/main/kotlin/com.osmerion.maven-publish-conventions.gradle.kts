@@ -51,7 +51,6 @@ publishing {
     publications.withType<MavenPublication>().configureEach {
         pom {
             name.set(project.name)
-            this@pom.packaging = packaging
             url.set("https://github.com/Osmerion/OneTrickPony")
 
             licenses {
