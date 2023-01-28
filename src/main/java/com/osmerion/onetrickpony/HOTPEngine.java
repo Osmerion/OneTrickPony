@@ -33,7 +33,6 @@ package com.osmerion.onetrickpony;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
 import java.security.InvalidKeyException;
-import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -154,7 +153,7 @@ public final class HOTPEngine {
      * Generates a One-Time Password derived from the given parameters.
      *
      * <p>This method is a utility overload for {@link #generate(SecretKey, long)}.
-     * The given {@code secret} byte array is wrapped into a temporary {@link Key}
+     * The given {@code secret} byte array is wrapped into a temporary {@link SecretKey}
      * instance for the duration of the OTP generation. Afterward, this key is
      * disposed. The given {@code secret} array is not modified.</p>
      *
