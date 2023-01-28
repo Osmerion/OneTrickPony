@@ -37,17 +37,17 @@ import java.util.Arrays;
  * The class consists exclusively of static methods for obtaining encoders and
  * decoders for the Base32 encoding scheme. The implementation of this class
  * supports the following types of Base32 as specified in
- * <a href="https://www.ietf.org/rfc/rfc4648.txt">RFC 4648</a>.
+ * <a href="https://www.ietf.org/rfc/rfc4648.txt">RFC&nbsp;4648</a>.
  *
  * <ul>
  * <li><a id="basic"><b>Basic</b></a>
- * <p> Uses "The Base 32 Alphabet" as specified in Table 3 of RFC 4648 for
+ * <p> Uses "The Base 32 Alphabet" as specified in Table 3 of RFC&nbsp;4648 for
  *     encoding and decoding operation. The decoder rejects data that contains
  *     characters outside the base32 alphabet.</p></li>
  * <li><a id="hex"><b>Extended Hex Alphabet</b></a>
  * <p> Uses "The 'Extended Hex' Base 32 Alphabet" as specified in Table 4 of
- *     RFC 4648 for encoding and decoding operation. The decoder rejects data
- *     that contains characters outside the base32 alphabet.</p></li>
+ *     RFC&nbsp;4648 for encoding and decoding operation. The decoder rejects
+ *     data that contains characters outside the base32 alphabet.</p></li>
  * </ul>
  *
  * @since   0.1.0
@@ -110,7 +110,7 @@ public final class Base32 {
 
     /**
      * This class implements a decoder for decoding byte data using the Base32
-     * encoding scheme as specified in RFC 4648.
+     * encoding scheme as specified in RFC&nbsp;4648.
      *
      * <p>Instances of {@link Base32.Decoder} are safe for use by multiple
      * concurrent threads.</p>
@@ -379,7 +379,7 @@ public final class Base32 {
 
     /**
      * This class implements an encoder for encoding byte data using the Base32
-     * encoding scheme as specified in RFC 4648.
+     * encoding scheme as specified in RFC&nbsp;4648.
      *
      * <p>Instances of {@link Base32.Encoder} are safe for use by multiple
      * concurrent threads.</p>

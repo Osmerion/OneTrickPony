@@ -35,7 +35,7 @@ import java.security.NoSuchAlgorithmException;
 
 /**
  * This class provides support for Time-based One-Time Passwords (TOTPs) as
- * specified by <a href="https://www.ietf.org/rfc/rfc6238.txt">RFC 6238</a>.
+ * specified by <a href="https://www.ietf.org/rfc/rfc6238.txt">RFC&nbsp;6238</a>.
  *
  * @since   0.1.0
  *

@@ -42,7 +42,7 @@ import java.util.Objects;
 
 /**
  * This class provides support for HMAC-based One-Time Passwords (HOTPs) as
- * specified by <a href="https://www.ietf.org/rfc/rfc4226.txt">RFC 4226</a>.
+ * specified by <a href="https://www.ietf.org/rfc/rfc4226.txt">RFC&nbsp;4226</a>.
  *
  * @since   0.1.0
  *
@@ -82,7 +82,8 @@ public final class HOTPEngine {
 
     /**
      * A constant value to be passed to {@link Builder#withTruncationOffset(int)}
-     * if the engine should perform dynamic truncation as specified in RFC 4226.
+     * if the engine should perform dynamic truncation as specified in
+     * RFC&nbsp;4226.
      *
      * @since   0.1.0
      */
