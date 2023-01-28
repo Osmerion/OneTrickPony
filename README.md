@@ -11,9 +11,46 @@ with Java's module system. It has zero runtime dependencies on external
 libraries. Built-In support is provided for the HOTP ([RFC 4226](https://www.rfc-editor.org/rfc/rfc4226))
 and TOTP ([RFC 6238](https://www.rfc-editor.org/rfc/rfc6238)) algorithms.
 
+
 ## Getting Started
 
+OneTrickPony provides support for OTPs via so-called _engines_.
+The following engines are provided by the library.
+
+### HMAC-based One Time Passwords (HOTPs)
+
+The `HOTPEngine` provides support for HOTPs as specified by RFC 4226.
+
 !TODO
+
+
+### Time-based One Time Passwords (TOTPs)
+
+The `TOTPEngine` provides support for TOTPs as specified by RFC 6238.
+
+!TODO
+
+
+### Bonus: The Base32 encoding scheme
+
+As secrets for OTPs are commonly shared using the Base32 encoding scheme,
+OneTrickPony also provides a `Base32` class analogous to Java's
+`java.util.Base64` class. This class implements support for Base32 en- and
+decoding as specified by [RFC 6238](https://www.rfc-editor.org/rfc/rfc4648).
+
+```java
+// Retrieve reusable en- and decoder instances
+Base32.Encoder encoder = Base32.getEncoder();
+Base32.Decoder decoder = Base32.getDecoder();
+
+// Encoding
+byte[] base32Data = encoder.encode("foobar".getBytes(StandardCharset.UTF_8));
+System.out.println(new String(base32Data, StandardCharsets.UTF_8)); // MZXW6YTBOI======
+
+// Decoding
+byte[] decodedData = decoder.decode(base32Data);
+System.out.println(new String(decodedData, StandardCharsets.UTF_8)); // foobar
+```
 
 
 ## Building from source
