@@ -37,7 +37,7 @@ import java.util.Arrays;
  * The class consists exclusively of static methods for obtaining encoders and
  * decoders for the Base32 encoding scheme. The implementation of this class
  * supports the following types of Base32 as specified in
- * <a href="http://www.ietf.org/rfc/rfc4648.txt">RFC 4648</a>.
+ * <a href="https://www.ietf.org/rfc/rfc4648.txt">RFC 4648</a>.
  *
  * <ul>
  * <li><a id="basic"><b>Basic</b></a>

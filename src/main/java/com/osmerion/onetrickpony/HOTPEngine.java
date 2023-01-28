@@ -41,7 +41,7 @@ import java.util.Objects;
 
 /**
  * This class provides support for HMAC-based One-Time Passwords (HOTPs) as
- * specified by <a href="http://www.ietf.org/rfc/rfc4226.txt">RFC 4226</a>.
+ * specified by <a href="https://www.ietf.org/rfc/rfc4226.txt">RFC 4226</a>.
  *
  * @since   0.1.0
  *
