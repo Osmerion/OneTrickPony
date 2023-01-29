@@ -28,5 +28,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+/** Provides the internal API of the library. */
 @NullMarked
 package com.osmerion.onetrickpony.internal;

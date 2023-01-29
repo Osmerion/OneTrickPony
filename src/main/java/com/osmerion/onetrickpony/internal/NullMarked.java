@@ -31,12 +31,19 @@
 package com.osmerion.onetrickpony.internal;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import javax.annotation.meta.TypeQualifierDefault;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
+/**
+ * The {@code NullMarked} annotation indicates that references can't be null in
+ * its scope, unless their types are explicitly marked {@link Nullable}.
+ *
+ * @author  Leon Linhart
+ */
 @Documented
 @Nonnull
 @TypeQualifierDefault({ ElementType.METHOD, ElementType.PARAMETER })
