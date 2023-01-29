@@ -363,19 +363,22 @@ public final class HOTPEngine {
         /**
          * Sets the truncation offset for the engine.
          *
-         * <p>By default, the engine will be configured to perform {@link #USE_DYNAMIC_TRUNCATION
-         * dynamic truncation}.</p>
+         * <p>The truncation offset will be used to extract a {@code 4}-byte
+         * segment from the generated MAC result. As the underlying MAC
+         * algorithm can be freely configured, this method does not check if the
+         * given offset is in bounds for the algorithm. Instead, {@link #USE_DYNAMIC_TRUNCATION
+         * dynamic truncation} is performed if the offset is invalid.</p>
          *
-         * @param value the desired truncation offset, or {@link #USE_DYNAMIC_TRUNCATION}
+         * <p>By default, the engine will be configured to perform dynamic
+         * truncation.</p>
+         *
+         * @param value the desired truncation offset
          *
          * @return  this builder instance
-         *
-         * @throws IllegalArgumentException if the given value is not in [-1, 15]
          *
          * @since   0.1.0
          */
         public Builder withTruncationOffset(int value) {
-            if (value < USE_DYNAMIC_TRUNCATION || 15 < value) throw new IllegalArgumentException("The truncation offset must be in range [0, 15] or USE_DYNAMIC_TRUNCATION");
             this.truncationOffset = value;
             return this;
         }
