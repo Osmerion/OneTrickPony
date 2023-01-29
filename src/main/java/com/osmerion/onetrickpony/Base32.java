@@ -112,7 +112,7 @@ public final class Base32 {
      * This class implements a decoder for decoding byte data using the Base32
      * encoding scheme as specified in RFC&nbsp;4648.
      *
-     * <p>Instances of {@link Base32.Decoder} are safe for use by multiple
+     * <p>Instances of {@code Base32.Decoder} are safe for use by multiple
      * concurrent threads.</p>
      *
      * @since   0.1.0
@@ -381,7 +381,7 @@ public final class Base32 {
      * This class implements an encoder for encoding byte data using the Base32
      * encoding scheme as specified in RFC&nbsp;4648.
      *
-     * <p>Instances of {@link Base32.Encoder} are safe for use by multiple
+     * <p>Instances of {@code Base32.Encoder} are safe for use by multiple
      * concurrent threads.</p>
      *
      * @since   0.1.0

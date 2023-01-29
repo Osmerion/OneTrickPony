@@ -43,7 +43,7 @@ import java.util.Objects;
  * This class provides support for HMAC-based One-Time Passwords (HOTPs) as
  * specified by <a href="https://www.ietf.org/rfc/rfc4226.txt">RFC&nbsp;4226</a>.
  *
- * <p>Instances of {@link HOTPEngine} are safe for use by multiple concurrent
+ * <p>Instances of {@code HOTPEngine} are safe for use by multiple concurrent
  * threads.</p>
  *
  * @since   0.1.0
@@ -55,6 +55,8 @@ public final class HOTPEngine {
     /**
      * The MAC algorithm that will be used to generate HOTPs unless otherwise
      * configured through {@link Builder#withMacAlgorithm(String)}.
+     *
+     * <p>The default MAC algorithm is {@code HmacSHA1}.</p>
      *
      * @since   0.1.0
      */
