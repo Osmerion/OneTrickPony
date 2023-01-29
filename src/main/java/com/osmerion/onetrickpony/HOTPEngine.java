@@ -160,8 +160,8 @@ public final class HOTPEngine {
      * instance for the duration of the OTP generation. Afterward, this key is
      * disposed. The given {@code secret} array is not modified.</p>
      *
-     * @param secret        the secret to use to generate the OTP
-     * @param counter       the counter value for which to generate the OTP
+     * @param secret    the secret to use to generate the OTP
+     * @param counter   the counter value for which to generate the OTP
      *
      * @return  the OTP for the given parameters
      *
@@ -205,8 +205,8 @@ public final class HOTPEngine {
     /**
      * Generates a One-Time Password derived from the given parameters.
      *
-     * @param secret        the secret to use to generate the OTP
-     * @param counter       the counter value for which to generate the OTP
+     * @param secret    the secret to use to generate the OTP
+     * @param counter   the counter value for which to generate the OTP
      *
      * @return  the OTP for the given parameters
      *
@@ -333,7 +333,14 @@ public final class HOTPEngine {
         /**
          * Sets the MAC algorithm for the engine.
          *
-         * <p>By default, the engine will be configured to use the {@link #DEFAULT_MAC_ALGORITHM}.</p>
+         * <p>By default, the engine will be configured to use the {@link #DEFAULT_MAC_ALGORITHM
+         * HmacSHA1}.</p>
+         *
+         * <p>Although RFC&nbsp;4226 does not specify HOTP for other MAC
+         * implementations, it is generally fine to use other SHA-based
+         * algorithms. However, using a more modern algorithm does is not likely
+         * to have a notable effect on security. Generally, the default should
+         * be used.</p>
          *
          * @param value the mac algorithm to be used
          *
