@@ -8,8 +8,8 @@
 OneTrickPony is a modern Java library that implements support for One-Time
 Passwords (OTPs). The library requires Java 11 or later and is fully compatible
 with Java's module system. It has zero runtime dependencies on external
-libraries. Built-In support is provided for the HOTP ([RFC 4226](https://www.rfc-editor.org/rfc/rfc4226))
-and TOTP ([RFC 6238](https://www.rfc-editor.org/rfc/rfc6238)) algorithms.
+libraries. Built-In support is provided for the HOTP ([RFC&nbsp;4226](https://www.rfc-editor.org/rfc/rfc4226))
+and TOTP ([RFC&nbsp;6238](https://www.rfc-editor.org/rfc/rfc6238)) algorithms.
 
 
 ## Getting Started
@@ -21,22 +21,68 @@ The following engines are provided by the library.
 
 The `HOTPEngine` provides support for HOTPs as specified by RFC 4226.
 
-!TODO
+```java
+HOTPEngine engine = HOTPEngine.builder()
+    .withChecksum(false)
+    .withCodeDigits(6)
+    .withMacAlgorithm("HmacSHA1")
+    .withTruncationOffset(HOTPEngine.USE_DYNAMIC_TRUNCATION)
+    .build();
+
+byte[] secret = "12345678901234567890".getBytes(StandardCharsets.UTF_8);
+int counter = 0;
+
+String otp = engine.generate(secret, counter);
+System.out.println(otp); // 755224
+```
+
+The engine's properties can be configured through a builder. All properties are
+initialized with reasonable defaults that are sufficient for most use-cases.
+
+| Property          |                                                                                            | Default                  |
+|-------------------|--------------------------------------------------------------------------------------------|--------------------------|
+| Checksum          | Whether to add an additional checksum digit to the OTP                                     | `false`                  |
+| Code digits       | The number of code digits of the OTP                                                       | `6`                      |
+| MAC algorithm     | The MAC algorithm to use to generate the hash for the OTP                                  | `HmacSHA1`               |
+| Truncation offset | The offset that will be used to extract the bytes used for the OTP from the generated hash | `USE_DYNAMIC_TRUNCATION` |
+
+The MAC algorithm is used to retrieve an [javax.crypto.Mac](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/javax/crypto/Mac.html)
+instance. Check the documentation of your Java distribution for a list of
+supported algorithms.
 
 
 ### Time-based One Time Passwords (TOTPs)
 
 The `TOTPEngine` provides support for TOTPs as specified by RFC 6238.
 
-!TODO
+```java
+TOTPEngine engine = TOTPEngine.builder()
+    .configureHOTPEngine(hotpBuilder -> {
+        // Use the builder to configure the underlying HOTPEngine
+    })
+    .withTimeStep(Duration.ofSeconds(30))
+    .build();
+
+byte[] secret = "12345678901234567890".getBytes(StandardCharsets.UTF_8);
+Instant time = Instant.parse("1970-01-01T00:00:59.00Z");
+
+String otp = engine.generate(secret, time);
+System.out.println(otp); // 287082
+```
+
+This engine uses an underlying `HOTPEngine` to generate the OTP. Both, the
+engine itself and the underlying engine can be configured through a builder.
+
+The engine has a single additional property to configure the time step for the
+generated OTPs. It defaults to a time step of 30&nbsp;seconds.
 
 
-### Bonus: The Base32 encoding scheme
+### Bonus: The Base32 Encoding Scheme
 
 As secrets for OTPs are commonly shared using the Base32 encoding scheme,
 OneTrickPony also provides a `Base32` class analogous to Java's
 `java.util.Base64` class. This class implements support for Base32 en- and
-decoding as specified by [RFC 6238](https://www.rfc-editor.org/rfc/rfc4648).
+decoding as specified by [RFC&nbsp;6238](https://www.rfc-editor.org/rfc/rfc4648).
 
 ```java
 // Retrieve reusable en- and decoder instances
