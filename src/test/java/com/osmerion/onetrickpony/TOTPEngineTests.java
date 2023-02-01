@@ -50,9 +50,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public final class TOTPEngineTests {
 
-    private static final byte[] SECRET_SHA1 = "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1);
-    private static final byte[] SECRET_SHA256 = "12345678901234567890123456789012".getBytes(StandardCharsets.ISO_8859_1);
-    private static final byte[] SECRET_SHA512 = "1234567890123456789012345678901234567890123456789012345678901234".getBytes(StandardCharsets.ISO_8859_1);
+    private static final byte[] SECRET_SHA1 = "12345678901234567890".getBytes(StandardCharsets.UTF_8);
+    private static final byte[] SECRET_SHA256 = "12345678901234567890123456789012".getBytes(StandardCharsets.UTF_8);
+    private static final byte[] SECRET_SHA512 = "1234567890123456789012345678901234567890123456789012345678901234".getBytes(StandardCharsets.UTF_8);
 
     private static Stream<Arguments> provideTestData() {
         return IntStream.of(6, 7, 8).boxed().flatMap(digits -> Stream.of(

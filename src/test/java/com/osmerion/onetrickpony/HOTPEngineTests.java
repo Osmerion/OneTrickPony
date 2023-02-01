@@ -49,18 +49,20 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public final class HOTPEngineTests {
 
+    private static final byte[] SECRET = "12345678901234567890".getBytes(StandardCharsets.UTF_8);
+
     private static Stream<Arguments> provideTestData() {
         return IntStream.of(6, 7, 8).boxed().flatMap(digits -> Stream.of(
-            Arguments.of("84755224", 0, digits, "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1)),
-            Arguments.of("94287082", 1, digits, "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1)),
-            Arguments.of("37359152", 2, digits, "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1)),
-            Arguments.of("26969429", 3, digits, "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1)),
-            Arguments.of("40338314", 4, digits, "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1)),
-            Arguments.of("68254676", 5, digits, "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1)),
-            Arguments.of("18287922", 6, digits, "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1)),
-            Arguments.of("82162583", 7, digits, "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1)),
-            Arguments.of("73399871", 8, digits, "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1)),
-            Arguments.of("45520489", 9, digits, "12345678901234567890".getBytes(StandardCharsets.ISO_8859_1))
+            Arguments.of("84755224", 0, digits, SECRET),
+            Arguments.of("94287082", 1, digits, SECRET),
+            Arguments.of("37359152", 2, digits, SECRET),
+            Arguments.of("26969429", 3, digits, SECRET),
+            Arguments.of("40338314", 4, digits, SECRET),
+            Arguments.of("68254676", 5, digits, SECRET),
+            Arguments.of("18287922", 6, digits, SECRET),
+            Arguments.of("82162583", 7, digits, SECRET),
+            Arguments.of("73399871", 8, digits, SECRET),
+            Arguments.of("45520489", 9, digits, SECRET)
         ));
     }
 
