@@ -30,6 +30,7 @@
  */
 package com.osmerion.onetrickpony;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -91,11 +92,23 @@ public final class Base32Tests {
         assertArrayEquals(src, decoder.decode(encoded));
     }
 
+    @Test
+    public void testDecodeInvalidCharacter() {
+        Base32.Decoder decoder = Base32.getDecoder();
+        assertThrows(IllegalArgumentException.class, () -> decoder.decode("-".getBytes(StandardCharsets.UTF_8)));
+    }
+
     @ParameterizedTest
     @MethodSource("provideHexData")
     public void testHexDecoder(byte[] src, byte[] encoded) {
         Base32.Decoder decoder = Base32.getHexDecoder();
         assertArrayEquals(src, decoder.decode(encoded));
+    }
+
+    @Test
+    public void testHexDecodeInvalidCharacter() {
+        Base32.Decoder decoder = Base32.getHexDecoder();
+        assertThrows(IllegalArgumentException.class, () -> decoder.decode("-".getBytes(StandardCharsets.UTF_8)));
     }
 
     @ParameterizedTest
