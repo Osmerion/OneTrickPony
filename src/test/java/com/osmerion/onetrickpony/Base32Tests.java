@@ -36,6 +36,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Random;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -83,6 +85,27 @@ public final class Base32Tests {
             new StringPair("fooba", "CPNMUOJ1"),
             new StringPair("foobar", "CPNMUOJ1E8======")
         );
+    }
+
+    private static Stream<Arguments> provideRandomData() {
+        Random random = new Random(System.currentTimeMillis());
+
+        return IntStream.range(0, 1_000).boxed().flatMap(it -> {
+            byte[] data = new byte[64 + random.nextInt(64)];
+            random.nextBytes(data);
+
+            return Stream.of(
+                Arguments.of(Base32.getDecoder(), Base32.getEncoder(), data),
+                Arguments.of(Base32.getHexDecoder(), Base32.getHexEncoder(), data)
+            );
+        });
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideRandomData")
+    public void entropyTest(Base32.Decoder decoder, Base32.Encoder encoder, byte[] data) {
+        byte[] encodedData = assertDoesNotThrow(() -> encoder.encode(data));
+        assertArrayEquals(data, decoder.decode(encodedData));
     }
 
     @ParameterizedTest
