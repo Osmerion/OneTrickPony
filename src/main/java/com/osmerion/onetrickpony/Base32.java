@@ -571,7 +571,7 @@ public final class Base32 {
                         } else {
                             int b3 = src[srcOffset] & 0xFF;
                             dst[dstOffset++] = (byte) alphabet[(b2 << 1) & 0b11111 | (b3 >> 7)];
-                            dst[dstOffset++] = (byte) alphabet[b3 >> 2];
+                            dst[dstOffset++] = (byte) alphabet[(b3 >> 2) & 0b11111];
                             dst[dstOffset++] = (byte) alphabet[(b3 << 3) & 0b11111];
                         }
                     }
