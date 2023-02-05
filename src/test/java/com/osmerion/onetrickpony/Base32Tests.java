@@ -38,7 +38,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -116,15 +115,6 @@ public final class Base32Tests {
     public void testDecoder(byte[] src, byte[] encoded) {
         Base32.Decoder decoder = Base32.getDecoder();
         assertArrayEquals(src, decoder.decode(encoded));
-    }
-    @ParameterizedTest
-    @ValueSource(ints = { 0, 1, 2, 3 })
-    public void testDecodeEndingB64(int trim) {
-        Base64.Decoder decoder = Base64.getDecoder();
-        byte[] data = "SHViZWxrcnV4".getBytes(StandardCharsets.UTF_8); // Hubelkrux
-
-        decoder.decode(Arrays.copyOf(data, data.length - trim));
-
     }
 
     @ParameterizedTest
