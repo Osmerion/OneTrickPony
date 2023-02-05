@@ -169,7 +169,7 @@ public final class Base32 {
                 } break;
             }
 
-            return 5 * (int) ((length + 5L) / 8) - paddings;
+            return 5 * (int) ((length + 7L) / 8) - paddings;
         }
 
         /**
@@ -320,7 +320,7 @@ public final class Base32 {
 
                 int b = src[offset++] & 0xFF;
                 if ((b = alphabet[b]) < 0) {
-                    if (b == -2) { // padding byte '-'
+                    if (b == -2) { // padding byte '='
                         if (shiftTo == 35 || shiftTo == 30 || shiftTo == 5 ||
                             shiftTo == 25 && (offset == end || src[offset++] != '=' || offset == end || src[offset++] != '=' || offset == end || src[offset++] != '=' || offset == end || src[offset++] != '=' || offset == end || src[offset++] != '=') ||
                             shiftTo == 20 && (offset == end || src[offset++] != '=' || offset == end || src[offset++] != '=' || offset == end || src[offset++] != '=') ||
