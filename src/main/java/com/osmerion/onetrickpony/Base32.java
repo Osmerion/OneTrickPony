@@ -268,7 +268,7 @@ public final class Base32 {
 
         private int decodeBlock(byte[] src, int srcOffset, int srcLength, byte[] dest, int destOffset) {
             int[] alphabet = this.isHex ? fromBase32Hex : fromBase32;
-            int blockLimit = srcOffset + ((srcLength - srcOffset) / 5) * 5;
+            int blockLimit = srcOffset + ((srcLength - srcOffset) / 8) * 8;
             int newDestOffset = destOffset;
 
             while (srcOffset < blockLimit) {
