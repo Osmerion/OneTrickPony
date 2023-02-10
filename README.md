@@ -17,7 +17,7 @@ and TOTP ([RFC&nbsp;6238](https://www.rfc-editor.org/rfc/rfc6238)) algorithms.
 OneTrickPony provides support for OTPs via so-called _engines_.
 The following engines are provided by the library.
 
-### HMAC-based One Time Passwords (HOTPs)
+### HMAC-based One-Time Passwords (HOTPs)
 
 The `HOTPEngine` provides support for HOTPs as specified by RFC 4226.
 
@@ -51,7 +51,7 @@ instance. Check the documentation of your Java distribution for a list of
 supported algorithms.
 
 
-### Time-based One Time Passwords (TOTPs)
+### Time-based One-Time Passwords (TOTPs)
 
 The `TOTPEngine` provides support for TOTPs as specified by RFC 6238.
 
