@@ -3,6 +3,8 @@
 !/.idea
 /.idea/*
 !/.idea/copyright
+!/.idea/runConfigurations
 !/.idea/scopes
+!/.idea/icon.png
 
 /build
