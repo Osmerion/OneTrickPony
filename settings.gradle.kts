@@ -28,8 +28,16 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-rootProject.name = "OneTrickPony"
-
 pluginManagement {
+    plugins {
+        id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
+    }
+
     includeBuild("build-logic")
 }
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention")
+}
+
+rootProject.name = "OneTrickPony"
