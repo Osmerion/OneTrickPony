@@ -28,9 +28,6 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-import com.osmerion.build.*
-import com.osmerion.build.BuildType
-
 plugins {
     signing
     `maven-publish`
@@ -39,12 +36,18 @@ plugins {
 
 publishing {
     repositories {
-        maven {
-            url = uri(deployment.repo)
+        val sonatypeUsername: String? by project
+        val sonatypePassword: String? by project
+        val stagingRepositoryId: String? by project
 
-            credentials {
-                username = deployment.user
-                password = deployment.password
+        if (sonatypeUsername != null && sonatypePassword != null && stagingRepositoryId != null) {
+            maven {
+                url = uri("https://s01.oss.sonatype.org/service/local/staging/deployByRepositoryId/$stagingRepositoryId/")
+
+                credentials {
+                    username = sonatypeUsername
+                    password = sonatypePassword
+                }
             }
         }
     }
@@ -80,6 +83,12 @@ publishing {
 }
 
 signing {
-    isRequired = (deployment.type === BuildType.RELEASE)
+    // Only require signing when publishing to a non-local maven repository
+    setRequired { gradle.taskGraph.allTasks.any { it is PublishToMavenRepository } }
+
+    val signingKey: String? by project
+    val signingPassword: String? by project
+    useInMemoryPgpKeys(signingKey, signingPassword)
+
     sign(publishing.publications)
 }

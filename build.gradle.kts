@@ -28,12 +28,11 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
-@Suppress("DSL_SCOPE_VIOLATION") // See https://github.com/gradle/gradle/issues/22797
 plugins {
-    `java-library`
     alias(libs.plugins.extra.java.module.info)
     alias(libs.plugins.gradle.toolchain.switches)
     id("com.osmerion.maven-publish-conventions")
+    `java-library`
 }
 
 val artifactName = "onetrickpony"
@@ -76,7 +75,7 @@ tasks {
 
 publishing {
     publications {
-        create<MavenPublication>("mavenJava") {
+        register<MavenPublication>("mavenJava") {
             from(components["java"])
 
             artifactId = artifactName

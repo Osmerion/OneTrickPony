@@ -29,7 +29,7 @@ jobs:
       - name: Gradle Assemble
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: assemble -Psnapshot --info -S --show-version
+          arguments: assemble --info -S --show-version
           gradle-home-cache-cleanup: true
 
       - name: Tar files
@@ -69,7 +69,7 @@ jobs:
       - name: Gradle Check
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: check -Psnapshot --info -S --show-version -Ptoolchain.test.version=${{ matrix.jdk }}
+          arguments: check --info -S --show-version -Ptoolchain.test.version=${{ matrix.jdk }}
           gradle-home-cache-cleanup: true
 
 
@@ -88,7 +88,7 @@ jobs:
   cleanup:
     name: Cleanup
     if: ${{ always() }}
-    needs: ['check']
+    needs: check
     runs-on: ubuntu-latest
     steps:
       - name: Cleanup
