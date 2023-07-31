@@ -29,7 +29,7 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 /**
- * Defines classes and interface that provide support for One-Time passwords
+ * Defines classes and interface that provide support for One-Time Passwords
  * (OTPs). Support for different OTP algorithms is provided by the following
  * engines.
  *
