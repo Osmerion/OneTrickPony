@@ -33,7 +33,7 @@ import com.osmerion.build.BuildType
 
 group = "com.osmerion.onetrickpony"
 
-val nextVersion = "0.1.0"
+val nextVersion = "1.0.0"
 version = when (deployment.type) {
     BuildType.SNAPSHOT -> "$nextVersion-SNAPSHOT"
     else -> nextVersion
