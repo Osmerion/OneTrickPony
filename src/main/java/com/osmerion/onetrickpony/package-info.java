@@ -36,10 +36,10 @@
  * <ul>
  * <li>{@link com.osmerion.onetrickpony.HOTPEngine}
  * <p> Provides support for HMAC-based One-Time Passwords (HOTPs) as specified
- *     by RFC 4226.</p></li>
+ *     by RFC&nbsp;4226.</p></li>
  * <li>{@link com.osmerion.onetrickpony.TOTPEngine}
  * <p> Provides support for Time-Based One-Time Passwords (TOTPs) as specified
- *     by RFC 6238.</p></li>
+ *     by RFC&nbsp;6238.</p></li>
  * </ul>
  */
 @NullMarked

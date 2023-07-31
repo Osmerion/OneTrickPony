@@ -19,7 +19,7 @@ The following engines are provided by the library.
 
 ### HMAC-based One-Time Passwords (HOTPs)
 
-The `HOTPEngine` provides support for HOTPs as specified by RFC 4226.
+The `HOTPEngine` provides support for HOTPs as specified by RFC&nbsp;4226.
 
 ```java
 HOTPEngine engine = HOTPEngine.builder()
@@ -53,7 +53,7 @@ supported algorithms.
 
 ### Time-based One-Time Passwords (TOTPs)
 
-The `TOTPEngine` provides support for TOTPs as specified by RFC 6238.
+The `TOTPEngine` provides support for TOTPs as specified by RFC&nbsp;6238.
 
 ```java
 TOTPEngine engine = TOTPEngine.builder()
