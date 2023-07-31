@@ -1,0 +1,70 @@
+This file contains the PGP key that is used to sign releases.
+
+Importing: `pgp < KEYS` or `gpg --import KEYS`
+
+Adding a key:
+`pgp -kxa <your name> >> KEYS`,
+or `(pgpk -ll <your name> && pgpk -xa <your name>) >> KEYS`,
+or `(gpg --list-sigs <your name> && gpg --armor --export <your name>) >> KEYS`
+
+================================
+
+pub   rsa4096 2023-06-27 [SC]
+      C0F7ACC03E57BB1AA96B81685C5958E691FBDF26
+uid           [ unknown] Open Source Development <opensource@osmerion.com>
+sig 3        5C5958E691FBDF26 2023-06-27  Open Source Development <opensource@osmerion.com>
+sub   rsa4096 2023-06-27 [E]
+sig          5C5958E691FBDF26 2023-06-27  Open Source Development <opensource@osmerion.com>
+
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+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
+yGgK1yJH2qMfLM5X8fppyq8PFkQhTGZvqQ==
+=BzO+
+-----END PGP PUBLIC KEY BLOCK-----
