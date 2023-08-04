@@ -48,7 +48,7 @@ java {
 
 tasks {
     withType<JavaCompile>().configureEach {
-        options.javaModuleVersion.set(provider { "${project.version}" })
+        options.javaModuleVersion.set("${project.version}")
         options.release.set(11)
     }
 
