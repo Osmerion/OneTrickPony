@@ -46,7 +46,7 @@ initialized with reasonable defaults that are sufficient for most use-cases.
 | MAC algorithm     | The MAC algorithm to use to generate the hash for the OTP                                  | `HmacSHA1`               |
 | Truncation offset | The offset that will be used to extract the bytes used for the OTP from the generated hash | `USE_DYNAMIC_TRUNCATION` |
 
-The MAC algorithm is used to retrieve an [javax.crypto.Mac](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/javax/crypto/Mac.html)
+The MAC algorithm is used to retrieve a [javax.crypto.Mac](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/javax/crypto/Mac.html)
 instance. Check the documentation of your Java distribution for a list of
 supported algorithms.
 
