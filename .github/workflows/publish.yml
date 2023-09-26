@@ -81,7 +81,7 @@ jobs:
     environment: ${{ inputs.environment }}
     steps:
       - id: create
-        uses: TheMrMilchmann/nexus-actions/create-staging-repo@v1
+        uses: TheMrMilchmann/nexus-actions/create-staging-repo@v2
         with:
           base-url: ${{ vars.SONATYPE_BASE_URL }}
           username: ${{ secrets.SONATYPE_USERNAME }}
@@ -133,7 +133,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
-      - uses: TheMrMilchmann/nexus-actions/close-staging-repo@v1
+      - uses: TheMrMilchmann/nexus-actions/close-staging-repo@v2
         with:
           base-url: ${{ vars.SONATYPE_BASE_URL }}
           username: ${{ secrets.SONATYPE_USERNAME }}
@@ -149,7 +149,7 @@ jobs:
     environment: ${{ inputs.environment }}
     steps:
       - name: Release Staging Repository
-        uses: TheMrMilchmann/nexus-actions/release-staging-repo@v1
+        uses: TheMrMilchmann/nexus-actions/release-staging-repo@v2
         with:
           base-url: ${{ vars.SONATYPE_BASE_URL }}
           username: ${{ secrets.SONATYPE_USERNAME }}
