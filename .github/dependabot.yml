@@ -9,4 +9,10 @@ updates:
       prefix: "build"
     labels:
       - "a:chore"
+      - "in:build"
       - "in:dependencies"
+    groups:
+      "@actions/artifacts":
+        patterns:
+          - "actions/download-artifact"
+          - "actions/upload-artifact"
