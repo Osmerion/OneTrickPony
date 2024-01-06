@@ -92,6 +92,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Cleanup
-        uses: GeekyEggo/delete-artifact@54ab544f12cdb7b71613a16a2b5a37a9ade990af
+        uses: GeekyEggo/delete-artifact@9d15d164b1dcd538ff1b1a2984bc2c0240986c3b
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           name: ${{ env.WORKSPACE_ARTIFACT }}
