@@ -28,7 +28,7 @@ jobs:
           java-version: ${{ env.JDK_VERSION }}
 
       - name: Gradle Assemble
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
           arguments: assemble --info -S --show-version
           gradle-home-cache-cleanup: true
@@ -68,7 +68,7 @@ jobs:
           java-version: ${{ env.JDK_VERSION }}
 
       - name: Gradle Check
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         with:
           arguments: check --info -S --show-version -Ptoolchain.test.version=${{ matrix.jdk }}
           gradle-home-cache-cleanup: true
@@ -115,7 +115,7 @@ jobs:
           java-version: ${{ env.JDK_VERSION }}
 
       - name: Gradle Publish
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@v3
         env:
           ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGKEY }}
           ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
