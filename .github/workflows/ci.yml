@@ -100,6 +100,6 @@ jobs:
       actions: write
     steps:
       - name: Cleanup
-        uses: GeekyEggo/delete-artifact@24928e75e6e6590170563b8ddae9fac674508aa1
+        uses: GeekyEggo/delete-artifact@f275313e70c08f6120db482d7a6b98377786765b
         with:
           name: ${{ env.WORKSPACE_ARTIFACT }}
