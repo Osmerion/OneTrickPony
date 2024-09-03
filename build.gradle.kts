@@ -39,7 +39,7 @@ val artifactName = "onetrickpony"
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(19))
+        languageVersion = JavaLanguageVersion.of(19)
     }
 
     withJavadocJar()
@@ -48,12 +48,12 @@ java {
 
 tasks {
     withType<JavaCompile>().configureEach {
-        options.javaModuleVersion.set("${project.version}")
-        options.release.set(11)
+        options.javaModuleVersion = "${project.version}"
+        options.release = 11
     }
 
     withType<Jar>().configureEach {
-        archiveBaseName.set(artifactName)
+        archiveBaseName = artifactName
     }
 
     javadoc {
@@ -81,7 +81,7 @@ publishing {
             artifactId = artifactName
 
             pom {
-                description.set(
+                description =
                     """
                     OneTrickPony is a modern Java library that implements support for One-Time
                     Passwords (OTPs). The library requires Java 11 or later and is fully compatible
@@ -89,7 +89,6 @@ publishing {
                     libraries. Built-In support is provided for the HOTP (RFC 4226) and
                     TOTP (RFC 6238) algorithms.
                     """.trimIndent().lines().joinToString(separator = " ")
-                )
             }
         }
     }
