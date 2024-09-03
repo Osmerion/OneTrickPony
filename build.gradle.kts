@@ -101,6 +101,7 @@ extraJavaModuleInfo {
 dependencies {
     compileOnly(libs.jsr305)
 
+    testImplementation(platform(buildDeps.junit.bom))
     testImplementation(buildDeps.junit.jupiter.api)
     testImplementation(buildDeps.junit.jupiter.params)
     testRuntimeOnly(buildDeps.junit.jupiter.engine)
