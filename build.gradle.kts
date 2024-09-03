@@ -29,7 +29,6 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 plugins {
-    alias(buildDeps.plugins.extra.java.module.info)
     alias(buildDeps.plugins.gradle.toolchain.switches)
     id("com.osmerion.maven-publish-conventions")
     `java-library`
