@@ -39,7 +39,7 @@ val artifactName = "onetrickpony"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(19)
+        languageVersion = JavaLanguageVersion.of(22)
     }
 
     withJavadocJar()
