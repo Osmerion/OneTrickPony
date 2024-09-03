@@ -41,3 +41,5 @@ plugins {
 }
 
 rootProject.name = "OneTrickPony"
+
+enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
