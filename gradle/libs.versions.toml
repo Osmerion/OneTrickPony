@@ -1,7 +1,8 @@
 [versions]
-jsr305 = "3.0.2"
+jspecify = "1.0.0"
 
 
 [libraries]
-# com.google.code.findbugs:jsr305 - JSR305
-jsr305 = { module = "com.google.code.findbugs:jsr305", version.ref = "jsr305" }
+# org.jspecify - JSpecify
+# https://github.com/jspecify/jspecify
+jspecify = { module = "org.jspecify:jspecify", version.ref = "jspecify" }

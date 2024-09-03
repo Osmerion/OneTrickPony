@@ -29,9 +29,10 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 /** Defines the OneTrickPony API for One-Time Password support. */
+@NullMarked
 module com.osmerion.onetrickpony {
 
-    requires static jsr305;
+    requires transitive org.jspecify;
 
     exports com.osmerion.onetrickpony;
 

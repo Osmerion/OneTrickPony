@@ -94,12 +94,8 @@ publishing {
     }
 }
 
-extraJavaModuleInfo {
-    automaticModule(libs.jsr305.get().module.toString(), "jsr305")
-}
-
 dependencies {
-    compileOnly(libs.jsr305)
+    api(libs.jspecify)
 
     testImplementation(platform(buildDeps.junit.bom))
     testImplementation(buildDeps.junit.jupiter.api)

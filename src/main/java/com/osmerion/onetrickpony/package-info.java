@@ -42,7 +42,4 @@
  *     by RFC&nbsp;6238.</p></li>
  * </ul>
  */
-@NullMarked
 package com.osmerion.onetrickpony;
-
-import com.osmerion.onetrickpony.internal.NullMarked;
