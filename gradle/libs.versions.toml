@@ -3,7 +3,7 @@ binary-compatibility-validator = "0.13.2"
 extra-java-module-info = "1.4.1"
 gradle-toolchain-switches = "0.3.0"
 jsr305 = "3.0.2"
-junit = "5.10.0"
+junit = "5.11.0"
 
 
 [libraries]
