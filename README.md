@@ -103,7 +103,7 @@ System.out.println(new String(decodedData, StandardCharsets.UTF_8)); // foobar
 
 ### Setup
 
-This project uses [Gradle's toolchain support](https://docs.gradle.org/8.2.1/userguide/toolchains.html)
+This project uses [Gradle's toolchain support](https://docs.gradle.org/current/userguide/toolchains.html)
 to detect and select the JDKs required to run the build. Please refer to the
 build scripts to find out which toolchains are requested.
 
