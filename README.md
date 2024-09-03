@@ -1,9 +1,9 @@
 # OneTrickPony 
 
-[![License](https://img.shields.io/badge/license-BSD-blue.svg?style=flat-square&label=License)](https://github.com/Osmerion/OneTrickPony/blob/master/LICENSE)
-[![Maven Central](https://img.shields.io/maven-central/v/com.osmerion.onetrickpony/onetrickpony.svg?style=flat-square&label=Maven%20Central)](https://maven-badges.herokuapp.com/maven-central/com.osmerion.onetrickpony/onetrickpony)
-[![JavaDoc](https://img.shields.io/maven-central/v/com.osmerion.onetrickpony/onetrickpony.svg?style=flat-square&label=JavaDoc&color=blue)](https://javadoc.io/doc/com.osmerion.onetrickpony/onetrickpony)
-![Java](https://img.shields.io/badge/Java-11-green.svg?style=flat-square&color=b07219&logo=java)
+[![License](https://img.shields.io/badge/license-BSD-blue.svg?style=for-the-badge&label=License)](https://github.com/Osmerion/OneTrickPony/blob/master/LICENSE)
+[![Maven Central](https://img.shields.io/maven-central/v/com.osmerion.onetrickpony/onetrickpony.svg?style=for-the-badge&label=Maven%20Central)](https://maven-badges.herokuapp.com/maven-central/com.osmerion.onetrickpony/onetrickpony)
+[![JavaDoc](https://img.shields.io/maven-central/v/com.osmerion.onetrickpony/onetrickpony.svg?style=for-the-badge&label=JavaDoc&color=blue)](https://javadoc.io/doc/com.osmerion.onetrickpony/onetrickpony)
+![Java](https://img.shields.io/badge/Java-11-green.svg?style=for-the-badge&color=b07219&logo=java)
 
 OneTrickPony is a modern Java library that implements support for One-Time
 Passwords (OTPs). The library requires Java 11 or later and is fully compatible
