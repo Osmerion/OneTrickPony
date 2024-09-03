@@ -42,4 +42,12 @@ plugins {
 
 rootProject.name = "OneTrickPony"
 
+dependencyResolutionManagement {
+    versionCatalogs {
+        register("buildDeps") {
+            from(files("./gradle/build.versions.toml"))
+        }
+    }
+}
+
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")

@@ -29,8 +29,8 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 plugins {
-    alias(libs.plugins.extra.java.module.info)
-    alias(libs.plugins.gradle.toolchain.switches)
+    alias(buildDeps.plugins.extra.java.module.info)
+    alias(buildDeps.plugins.gradle.toolchain.switches)
     id("com.osmerion.maven-publish-conventions")
     `java-library`
 }
@@ -101,7 +101,7 @@ extraJavaModuleInfo {
 dependencies {
     compileOnly(libs.jsr305)
 
-    testImplementation(libs.junit.jupiter.api)
-    testImplementation(libs.junit.jupiter.params)
-    testRuntimeOnly(libs.junit.jupiter.engine)
+    testImplementation(buildDeps.junit.jupiter.api)
+    testImplementation(buildDeps.junit.jupiter.params)
+    testRuntimeOnly(buildDeps.junit.jupiter.engine)
 }
