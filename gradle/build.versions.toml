@@ -1,5 +1,5 @@
 [versions]
-binary-compatibility-validator = "0.13.2"
+binary-compatibility-validator = "0.16.3"
 gradle-toolchain-switches = "0.3.0"
 junit = "5.11.0"
 
