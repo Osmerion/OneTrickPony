@@ -1,5 +1,4 @@
 [versions]
-binary-compatibility-validator = "0.13.2"
 gradle-toolchain-switches = "0.3.0"
 junit = "5.11.0"
 
@@ -15,6 +14,3 @@ junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", vers
 [plugins]
 # io.github.themrmilchmann.gradle.toolchainswitches:gradle-toolchain-switches - Gradle Toolchain Switches Plugin
 gradle-toolchain-switches = { id = "io.github.themrmilchmann.toolchain-switches", version.ref = "gradle-toolchain-switches" }
-
-# org.jetbrains.kotlinx.binary-compatibility-validator - binary-compatibility-validator
-binary-compatibility-validator = { id = "org.jetbrains.kotlinx.binary-compatibility-validator", version.ref = "binary-compatibility-validator" }
