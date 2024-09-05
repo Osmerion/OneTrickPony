@@ -28,6 +28,8 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
+import org.jspecify.annotations.NullMarked;
+
 /** Defines the OneTrickPony API for One-Time Password support. */
 @NullMarked
 module com.osmerion.onetrickpony {
