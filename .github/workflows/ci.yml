@@ -6,7 +6,7 @@ on:
 
 
 env:
-  JDK_VERSION: "21"
+  JDK_VERSION: "22"
   WORKSPACE_ARCHIVE: workspace.tar
   WORKSPACE_ARTIFACT: build-results
 
