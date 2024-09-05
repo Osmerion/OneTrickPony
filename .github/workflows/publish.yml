@@ -37,7 +37,7 @@ jobs:
         run: ./gradlew assemble --info -S --show-version
 
       - name: Tar files
-        run: tar -cvf ${{ env.WORKSPACE_ARCHIVE }} .
+        run: tar --exclude='.git' --exclude=${{ env.WORKSPACE_ARCHIVE }} -cvf ${{ env.WORKSPACE_ARCHIVE }} .
 
       - uses: actions/upload-artifact@v4
         with:
