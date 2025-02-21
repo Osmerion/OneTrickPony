@@ -1,14 +1,16 @@
 [versions]
 gradle-toolchain-switches = "0.3.0"
-junit = "5.11.4"
+junit = "5.12.0"
 
 
 [libraries]
 # org.junit - JUnit
+# https://github.com/junit-team/junit5
 junit-bom = { module = "org.junit:junit-bom", version.ref = "junit" }
 junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
 junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
 junit-jupiter-params = { module = "org.junit.jupiter:junit-jupiter-params", version.ref = "junit" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
 
 
 [plugins]
