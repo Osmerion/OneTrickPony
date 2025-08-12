@@ -1,184 +1,103 @@
 name: Publish
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        description: The environment to publish to
-        type: environment
+  - workflow_dispatch
+permissions:
+  contents: read
 
-env:
-  JDK_VERSION: "22"
-  WORKSPACE_ARCHIVE: workspace.tar
-  WORKSPACE_ARTIFACT: build-results
-
+concurrency:
+  group: "publish"
+  cancel-in-progress: false
 
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4
         with:
           distribution: "temurin"
-          java-version: ${{ env.JDK_VERSION }}
+          java-version-file: .github/workflows/.java-version
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3 # v4
 
       - name: Gradle Assemble
         run: ./gradlew assemble --info -S --show-version
-
-      - name: Tar files
-        run: tar --exclude='.git' --exclude=${{ env.WORKSPACE_ARCHIVE }} -cvf ${{ env.WORKSPACE_ARCHIVE }} .
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ${{ env.WORKSPACE_ARTIFACT }}
-          path: ${{ env.WORKSPACE_ARCHIVE }}
-          retention-days: 1
-
 
   check:
     name: Check
     strategy:
       matrix:
-        jdk: [ 11, 17, 21, 22 ]
+        jdk: [ 11, 17, 21, 24 ]
+        os: [ ubuntu-latest, windows-latest ]
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout
-        uses: actions/download-artifact@v5
-        with:
-          name: ${{ env.WORKSPACE_ARTIFACT }}
-          path: .
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
-      - name: Untar
-        run: |
-          tar -xvf ${{ env.WORKSPACE_ARCHIVE }}
-          rm ${{ env.WORKSPACE_ARCHIVE }}
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4
         with:
           distribution: "temurin"
-          java-version: ${{ env.JDK_VERSION }}
+          java-version-file: .github/workflows/.java-version
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3 # v4
 
       - name: Gradle Check
-        run: ./gradlew check --info -S --show-version -Ptoolchain.test.version=${{ matrix.jdk }}
+        shell: bash
+        run: ./gradlew check --info -S --show-version -Ptoolchain.functionalTest.version=${{ matrix.jdk }}
 
-
-  create-staging-repository:
-    name: Create Staging Repository
+  build-artifact-bundle:
+    name: Build Artifact Bundle
     needs: check
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
-    steps:
-      - id: create
-        uses: TheMrMilchmann/nexus-actions/create-staging-repo@v2
-        with:
-          base-url: ${{ vars.SONATYPE_BASE_URL }}
-          username: ${{ secrets.SONATYPE_USERNAME }}
-          password: ${{ secrets.SONATYPE_PASSWORD }}
-          staging-profile-id: ${{ secrets.SONATYPE_STAGING_PROFILE_ID }}
-          description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
-    outputs:
-      staging-repository-id: ${{ steps.create.outputs.staging-repository-id }}
-
-
-  nexus-upload:
-    name: Upload to Nexus
-    needs: create-staging-repository
-    runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
     steps:
       - name: Checkout
-        uses: actions/download-artifact@v5
-        with:
-          name: ${{ env.WORKSPACE_ARTIFACT }}
-          path: .
-
-      - name: Untar
-        run: |
-          tar -xvf ${{ env.WORKSPACE_ARCHIVE }}
-          rm ${{ env.WORKSPACE_ARCHIVE }}
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
 
       - name: Setup Java
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4
         with:
           distribution: "temurin"
-          java-version: ${{ env.JDK_VERSION }}
+          java-version-file: .github/workflows/.java-version
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3 # v4
 
-      - name: Gradle Publish
+      - name: Build Artifact Bundle
         env:
-          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGKEY }}
-          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.ORG_GRADLE_PROJECT_SIGNINGPASSWORD }}
-          ORG_GRADLE_PROJECT_sonatypeUsername: ${{ secrets.SONATYPE_USERNAME }}
-          ORG_GRADLE_PROJECT_sonatypePassword: ${{ secrets.SONATYPE_PASSWORD }}
-          ORG_GRADLE_PROJECT_stagingRepositoryId: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
-        run: ./gradlew publishAllPublicationsToMavenRepository --info -S --show-version
+          ORG_GRADLE_PROJECT_signingKey: ${{ secrets.SIGNING_KEY }}
+          ORG_GRADLE_PROJECT_signingPassword: ${{ secrets.SIGNING_PASSWORD }}
+        run: ./gradlew --init-script ./.github/init.gradle.kts artifactBundle --info -S --show-version
 
-
-  close-staging-repository:
-    name: Close Staging Repository
-    needs: [create-staging-repository, nexus-upload]
-    runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
-    steps:
-      - uses: TheMrMilchmann/nexus-actions/close-staging-repo@v2
+      - name: Upload Artifact Bundle
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
-          base-url: ${{ vars.SONATYPE_BASE_URL }}
-          username: ${{ secrets.SONATYPE_USERNAME }}
-          password: ${{ secrets.SONATYPE_PASSWORD }}
-          staging-repository-id: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
-          description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
+          name: "artifact-bundle"
+          path: "./build/libs/maven-artifact-bundle.tgz"
 
-
-  nexus-release:
-    name: Release to Nexus
-    needs: [create-staging-repository, close-staging-repository]
+  central-upload:
+    name: Upload to Central Portal
+    needs: build-artifact-bundle
     runs-on: ubuntu-latest
-    environment: ${{ inputs.environment }}
     steps:
-      - name: Release Staging Repository
-        uses: TheMrMilchmann/nexus-actions/release-staging-repo@v2
+      - name: Download Artifact Bundle
+        uses: actions/download-artifact@634f93cb2916e3fdff6788551b99b062d0335ce0 # v5
         with:
-          base-url: ${{ vars.SONATYPE_BASE_URL }}
-          username: ${{ secrets.SONATYPE_USERNAME }}
-          password: ${{ secrets.SONATYPE_PASSWORD }}
-          staging-repository-id: ${{ needs.create-staging-repository.outputs.staging-repository-id }}
-          description: ${{ github.repository }}/${{ github.workflow }}#${{ github.run_number }}
+          name: "artifact-bundle"
+          path: .
 
-
-  # So, what's happening here?
-  #
-  # Basically, restoring the workspace state between jobs is incredibly annoying.
-  # We can get reasonable support by using the upload-/download-artifact
-  # actions, but they suffer from a severe limitation:
-  # GH Actions has a storage limit and the minimum retention is 24 hours...
-  #
-  # Since the storage quota is limited, we have to make sure that the artifact
-  # is removed. Unfortunately, there is no official way to do this, so we resort
-  # to a third party action for now.
-  #
-  # See also: https://github.com/actions/upload-artifact/issues/290
-  cleanup:
-    name: Cleanup
-    if: ${{ always() }}
-    needs: nexus-release
-    runs-on: ubuntu-latest
-    permissions:
-      actions: write
-    steps:
-      - name: Cleanup
-        uses: GeekyEggo/delete-artifact@f275313e70c08f6120db482d7a6b98377786765b
+      - id: upload
+        name: Upload to Central Portal
+        uses: TheMrMilchmann/central-portal-actions/upload-deployment@3b930f17b4a03b4e330ec419812ec447e11cafa3 # v0
         with:
-          name: ${{ env.WORKSPACE_ARTIFACT }}
+          username: ${{ secrets.CENTRAL_PORTAL_USERNAME }}
+          password: ${{ secrets.CENTRAL_PORTAL_PASSWORD }}
+          bundle: ./maven-artifact-bundle.tgz
+          publishing-type: "automatic"
+    outputs:
+      deployment-id: ${{ steps.upload.outputs.deployment-id }}
