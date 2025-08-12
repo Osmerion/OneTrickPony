@@ -1,3 +1,3 @@
 {
-    "extends": ["github>Osmerion/.github//.github/renovate.json5"]
+    extends: ["github>Osmerion/.github//.github/renovate.json5"]
 }
