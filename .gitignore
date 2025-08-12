@@ -7,4 +7,6 @@
 !/.idea/scopes
 !/.idea/icon.png
 
+/.kotlin
+
 /build
