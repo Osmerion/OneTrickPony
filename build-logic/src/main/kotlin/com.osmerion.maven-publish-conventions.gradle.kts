@@ -31,7 +31,6 @@
 plugins {
     signing
     `maven-publish`
-    id("com.osmerion.base-conventions")
 }
 
 publishing {

@@ -43,6 +43,12 @@ plugins {
 rootProject.name = "OneTrickPony"
 
 dependencyResolutionManagement {
+    repositoriesMode = RepositoriesMode.FAIL_ON_PROJECT_REPOS
+
+    repositories {
+        mavenCentral()
+    }
+
     versionCatalogs {
         register("buildDeps") {
             from(files("./gradle/build.versions.toml"))
