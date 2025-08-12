@@ -34,22 +34,6 @@ plugins {
 }
 
 publishing {
-    repositories {
-        val sonatypeUsername: String? by project
-        val sonatypePassword: String? by project
-        val stagingRepositoryId: String? by project
-
-        if (sonatypeUsername != null && sonatypePassword != null && stagingRepositoryId != null) {
-            maven {
-                url = uri("https://s01.oss.sonatype.org/service/local/staging/deployByRepositoryId/$stagingRepositoryId/")
-
-                credentials {
-                    username = sonatypeUsername
-                    password = sonatypePassword
-                }
-            }
-        }
-    }
     publications.withType<MavenPublication>().configureEach {
         pom {
             name = project.name
