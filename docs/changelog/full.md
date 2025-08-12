@@ -2,11 +2,11 @@
 
 _Released 2025 Aug 12_
 
-## Improvements
+#### Improvements
 
 - Migrated to [JSpecify](https://jspecify.dev/) for nullability annotations.
 
-## Breaking Changes
+#### Breaking Changes
 
 - The migration to JSpecify annotations for nullability might cause some
   incompatibilities with existing tooling.
