@@ -107,7 +107,7 @@ This project uses [Gradle's toolchain support](https://docs.gradle.org/current/u
 to detect and select the JDKs required to run the build. Please refer to the
 build scripts to find out which toolchains are requested.
 
-An installed JDK 1.8 (or later) is required to use Gradle.
+An installed JDK 17 (or later) is required to use Gradle.
 
 ### Building
 
