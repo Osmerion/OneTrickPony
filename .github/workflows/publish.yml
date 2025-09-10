@@ -93,7 +93,7 @@ jobs:
 
       - id: upload
         name: Upload to Central Portal
-        uses: TheMrMilchmann/central-portal-actions/upload-deployment@3b930f17b4a03b4e330ec419812ec447e11cafa3 # v0.2.0
+        uses: TheMrMilchmann/central-portal-actions/upload-deployment@49408323afaf26e74be8e9df84a7a4ca81615e3a # v1.0.0
         with:
           username: ${{ secrets.CENTRAL_PORTAL_USERNAME }}
           password: ${{ secrets.CENTRAL_PORTAL_PASSWORD }}
